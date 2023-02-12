@@ -1,7 +1,11 @@
-import 'package:dolibarr_app/pages/welcomeScreen.dart';
+import 'dart:convert';
+
+import 'package:dolibarr_app/pages/Dashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:http/http.dart' as http;
+import "package:flutter_session_manager/flutter_session_manager.dart";
 //import 'package:validators/validators.dart';
 
 // ignore: camel_case_types
@@ -14,11 +18,12 @@ class loginScreen extends StatefulWidget {
 
 // ignore: camel_case_types
 class _loginScreenState extends State<loginScreen> {
-  final TextEditingController _textEditingController = TextEditingController();
+  final _usernameController = TextEditingController();
+  final _passwordController = TextEditingController();
 
   @override
   void dispose() {
-    _textEditingController.clear();
+    _usernameController.clear();
     super.dispose();
   }
 
@@ -96,7 +101,7 @@ class _loginScreenState extends State<loginScreen> {
                           padding: const EdgeInsets.only(
                               left: 20, right: 20, bottom: 20, top: 20),
                           child: TextFormField(
-                            controller: _textEditingController,
+                            controller: _usernameController,
                             onChanged: (val) {
                               setState(() {
                                 login = true;
@@ -133,6 +138,7 @@ class _loginScreenState extends State<loginScreen> {
                           child: Form(
                             key: _formKey,
                             child: TextFormField(
+                              controller: _passwordController,
                               obscuringCharacter: '*',
                               obscureText: true,
                               decoration: const InputDecoration(
@@ -156,7 +162,7 @@ class _loginScreenState extends State<loginScreen> {
                                     color: Color.fromARGB(255, 8, 67, 228)),
                               ),
                               validator: (value) {
-                                if (value!.isEmpty && value!.length < 5) {
+                                if (value!.isEmpty && value.length < 5) {
                                   return 'Enter a valid password';
                                 }
                                 return null;
@@ -181,21 +187,29 @@ class _loginScreenState extends State<loginScreen> {
                                     // padding: EdgeInsets.only(
                                     //     left: 120, right: 120, top: 20, bottom: 20),
                                     ),
-                                onPressed: () {
+                                onPressed: () async {
                                   if (_formKey.currentState!.validate()) {
-                                    // If the form is valid, display a snackbar. In the real world,
-                                    // you'd often call a server or save the information in a database.
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      const SnackBar(
-                                          content:
-                                              Text('Verification des donnees')),
-                                    );
+                                    var login = await log(
+                                        _usernameController.text,
+                                        _passwordController.text);
+                                    if (login.toString() == 'false') {
+                                      // ignore: use_build_context_synchronously
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const loginScreen()));
+                                    } else {
+                                      if (login.toString() == 'true') {
+                                        // ignore: use_build_context_synchronously
+                                        Navigator.pushReplacement(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    const Dashboard()));
+                                      }
+                                    }
                                   }
-                                  //Navigator.push(
-                                  //    context,
-                                  //    MaterialPageRoute(
-                                  //        builder: (context) =>
-                                  //            welcomeScreen()));
                                 },
                                 child: const Text(
                                   'Log In',
@@ -213,4 +227,36 @@ class _loginScreenState extends State<loginScreen> {
       ),
     );
   }
+}
+
+Future<Object> log(String login, String password) async {
+  var session = SessionManager();
+  const api =
+      "http://dolibarrproject-001-site1.ftempurl.com/htdocs/api/index.php/login";
+
+  http.Response response = await http.Client().post(Uri.parse(api),
+      body: ({
+        'login': login,
+        'password': password,
+      }));
+  final data = json.decode(response.body);
+  if (response.statusCode == 200) {
+    // print('okkkay');
+
+    session.set("isLogin", true);
+    session.set("token", data['success']['token']);
+
+    return true;
+  }
+  if (response.statusCode == 403) {
+    //print("denied");
+    return false;
+  }
+  // print(login);
+  // print(password);
+  // print(response.statusCode);
+  // print(Uri.parse(api).toString());
+  await session.set("token", "");
+
+  return false;
 }
