@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:dolibarr_app/pages/Dashboard.dart';
+import 'package:dolibarr_app/dashboard/dashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -206,7 +206,7 @@ class _loginScreenState extends State<loginScreen> {
                                             context,
                                             MaterialPageRoute(
                                                 builder: (context) =>
-                                                    const Dashboard()));
+                                                    const MainScreen()));
                                       }
                                     }
                                   }
