@@ -1,3 +1,4 @@
+import 'package:dolibarr_app/constant.dart';
 import 'package:dolibarr_app/produit/product.dart';
 import 'package:flutter/material.dart';
 
@@ -20,6 +21,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
+        backgroundColor: kOrange,
         title: const Text('Product List'),
       ),
       body: Padding(

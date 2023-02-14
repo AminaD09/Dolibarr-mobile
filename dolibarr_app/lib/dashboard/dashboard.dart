@@ -15,7 +15,7 @@ class MainScreen extends StatelessWidget {
         elevation: 0,
         backgroundColor: Colors.transparent,
         iconTheme: const IconThemeData(color: Colors.grey, size: 28),
-        actions: [
+        /*actions: [
           IconButton(
             onPressed: () {},
             icon: const Icon(
@@ -33,9 +33,9 @@ class MainScreen extends StatelessWidget {
           Container(
             margin: const EdgeInsets.only(top: 5, right: 16, bottom: 5),
           )
-        ],
+        ],*/
       ),
-      drawer: const SideMenu(),
+      endDrawer: const SideMenu(),
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         child: Padding(
