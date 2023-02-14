@@ -2,6 +2,8 @@ import 'package:dolibarr_app/dashboard/dashboard.dart';
 import 'package:dolibarr_app/pages/auth/loginScreen.dart';
 import 'package:dolibarr_app/pages/welcomeScreen.dart';
 import 'package:dolibarr_app/produit/home_page.dart';
+import 'package:dolibarr_app/tiers/homeTiers.dart';
+import 'package:dolibarr_app/tiers/welcomeTiers.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
@@ -28,7 +30,7 @@ class CourseGrid extends StatelessWidget {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const MainScreen()));
+                        builder: (context) => const WelcomeTiers()));
                 break;
               case 1:
                 Navigator.push(

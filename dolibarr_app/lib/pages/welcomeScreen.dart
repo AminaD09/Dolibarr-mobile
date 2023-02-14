@@ -27,15 +27,12 @@ class _welcomeScreenState extends State<welcomeScreen> {
               const SizedBox(
                 height: 20,
               ),
-              Image.network(
-                'https://magen2planet.com/wp-content/uploads/2016/10/formation-dolibarr-erp-rapide-facile-confirguration.jpg',
+              Image.asset(
+                'images/logo.jpg',
                 height: 130,
                 width: 120,
               ),
-              Lottie.network(
-                  'https://assets10.lottiefiles.com/packages/lf20_vx7eeu3w.json',
-                  height: 300,
-                  width: 600),
+              Lottie.asset('images/globe.json', height: 300, width: 600),
               const Text(
                 'Bienvenue sur Dolibarr',
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
