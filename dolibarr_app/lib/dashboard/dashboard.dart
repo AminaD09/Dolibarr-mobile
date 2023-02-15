@@ -1,5 +1,6 @@
 import 'package:dolibarr_app/dashboard/side_menu.dart';
 import 'package:flutter/material.dart';
+import "package:flutter_session_manager/flutter_session_manager.dart";
 
 import '../constant.dart';
 import '../widgets/courses_grid.dart';
@@ -15,25 +16,6 @@ class MainScreen extends StatelessWidget {
         elevation: 0,
         backgroundColor: Colors.transparent,
         iconTheme: const IconThemeData(color: Colors.grey, size: 28),
-        /*actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              Icons.search,
-              color: Colors.grey,
-            ),
-          ),
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              Icons.notifications,
-              color: Colors.grey,
-            ),
-          ),
-          Container(
-            margin: const EdgeInsets.only(top: 5, right: 16, bottom: 5),
-          )
-        ],*/
       ),
       endDrawer: const SideMenu(),
       body: SingleChildScrollView(
@@ -43,22 +25,22 @@ class MainScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              RichText(
-                text: const TextSpan(
-                  text: "Hello ",
-                  style: TextStyle(color: kDarkBlue, fontSize: 20),
-                  children: [
-                    TextSpan(
-                      text: "MBACKE",
-                      style: TextStyle(
-                          color: kDarkBlue, fontWeight: FontWeight.bold),
-                    ),
-                    TextSpan(
-                      text: ", welcome back!",
-                    ),
-                  ],
+              Column(children: [
+                FutureBuilder(
+                  future: SessionManager().get('name'),
+                  builder: (context, snapshot) {
+                    return Text(
+                      snapshot.hasData
+                          // ignore: prefer_interpolation_to_compose_strings
+                          ? "Hello " +
+                              snapshot.data.toString().toUpperCase() +
+                              ", welcome back!"
+                          : 'Not connected',
+                      style: const TextStyle(color: kDarkBlue, fontSize: 20),
+                    );
+                  },
                 ),
-              ),
+              ]),
               const SizedBox(
                 height: 15,
               ),

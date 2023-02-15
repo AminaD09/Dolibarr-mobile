@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:dolibarr_app/dashboard/dashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
@@ -89,8 +88,6 @@ class _loginScreenState extends State<loginScreen> {
                   ),
                   Container(
                     height: login ? 280 : 200,
-                    // _formKey!.currentState!.validate() ? 200 : 600,
-                    // height: login ? 260 : 182,
                     width: MediaQuery.of(context).size.width / 1.1,
                     decoration: BoxDecoration(
                         color: Colors.white.withOpacity(0.3),
@@ -241,21 +238,16 @@ Future<Object> log(String login, String password) async {
       }));
   final data = json.decode(response.body);
   if (response.statusCode == 200) {
-    // print('okkkay');
-
     session.set("isLogin", true);
+    session.set("name", login);
     session.set("token", data['success']['token']);
 
     return true;
   }
   if (response.statusCode == 403) {
-    //print("denied");
-    return false;
+    return "403";
   }
-  // print(login);
-  // print(password);
-  // print(response.statusCode);
-  // print(Uri.parse(api).toString());
+
   await session.set("token", "");
 
   return false;
