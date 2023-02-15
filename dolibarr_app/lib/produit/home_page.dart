@@ -1,4 +1,5 @@
 import 'package:dolibarr_app/constant.dart';
+import 'package:dolibarr_app/dashboard/side_menu.dart';
 import 'package:dolibarr_app/produit/product.dart';
 import 'package:flutter/material.dart';
 
@@ -24,6 +25,7 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: kOrange,
         title: const Text('Product List'),
       ),
+      endDrawer: const SideMenu(),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
