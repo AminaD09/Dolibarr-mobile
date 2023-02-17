@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:dolibarr_app/dashboard/dashboard.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:lottie/lottie.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
@@ -189,13 +190,25 @@ class _loginScreenState extends State<loginScreen> {
                                     var login = await log(
                                         _usernameController.text,
                                         _passwordController.text);
-                                    if (login.toString() == 'false') {
+                                    if (login.toString() == '403') {
                                       // ignore: use_build_context_synchronously
                                       Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  const loginScreen()));
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      const loginScreen()))
+                                          .then((value) => {
+                                                Fluttertoast.showToast(
+                                                  msg:
+                                                      'Login ou mot de passe incorrecte',
+                                                  toastLength:
+                                                      Toast.LENGTH_SHORT,
+                                                  gravity: ToastGravity.BOTTOM,
+                                                  timeInSecForIosWeb: 1,
+                                                  backgroundColor: Colors.grey,
+                                                  textColor: Colors.white,
+                                                )
+                                              });
                                     } else {
                                       if (login.toString() == 'true') {
                                         // ignore: use_build_context_synchronously
@@ -204,6 +217,28 @@ class _loginScreenState extends State<loginScreen> {
                                             MaterialPageRoute(
                                                 builder: (context) =>
                                                     const MainScreen()));
+                                      }
+                                      if (login.toString() == 'false') {
+                                        // ignore: use_build_context_synchronously
+                                        Navigator.pushReplacement(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        const loginScreen()))
+                                            .then((value) => {
+                                                  Fluttertoast.showToast(
+                                                    msg:
+                                                        'Erreur veuillez réessayer.',
+                                                    toastLength:
+                                                        Toast.LENGTH_SHORT,
+                                                    gravity:
+                                                        ToastGravity.BOTTOM,
+                                                    timeInSecForIosWeb: 1,
+                                                    backgroundColor:
+                                                        Colors.grey,
+                                                    textColor: Colors.white,
+                                                  )
+                                                });
                                       }
                                     }
                                   }

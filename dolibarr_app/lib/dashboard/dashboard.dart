@@ -14,7 +14,7 @@ class MainScreen extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.blue,
         iconTheme: const IconThemeData(color: Colors.grey, size: 28),
       ),
       endDrawer: const SideMenu(),
