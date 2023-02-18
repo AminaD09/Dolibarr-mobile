@@ -1,6 +1,6 @@
 // ignore: file_names
 import 'package:dolibarr_app/tiers/contacts/HomeContact.dart';
-import 'package:dolibarr_app/tiers/welcomeTiers.dart';
+import 'package:dolibarr_app/tiers/gestion/gestionTiers.dart';
 import 'package:flutter/material.dart';
 
 import '../data/data.dart';
@@ -83,7 +83,7 @@ class HomeTiers extends StatelessWidget {
   Widget _getPageForIndex(int index) {
     switch (index) {
       case 0:
-        return const WelcomeTiers();
+        return const GestionTiers();
       // Ajouter des cas pour d'autres pages en fonction des besoins
       default:
         return const HomeContact();
