@@ -1,11 +1,10 @@
 import 'package:dolibarr_app/dashboard/dashboard.dart';
-//import 'package:dolibarr_app/produit/home_page.dart';
+import 'package:dolibarr_app/produit/home_page.dart';
 import 'package:dolibarr_app/tiers/welcomeTiers.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
+
 import '../data/data.dart';
-//import '../produit/home_page.dart';
-import '../produit/home_page.dart';
 import '../produit/home_page1.dart';
 
 class CourseGrid extends StatelessWidget {
@@ -35,18 +34,13 @@ class CourseGrid extends StatelessWidget {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const HomePage1())
-                        
-                        ); //produit
-
-                        
+                        builder: (context) => const HomePage1())); //product
                 break;
               case 2:
                 Navigator.push(
                     context,
                     MaterialPageRoute(
                         builder: (context) => const MainScreen()));
-                        
                 break;
               default:
                 Navigator.push(
