@@ -1,3 +1,4 @@
+import 'package:dolibarr_app/Users/Update.dart';
 import 'package:flutter/material.dart';
 import 'package:dolibarr_app/dashboard/side_menu.dart';
 import 'Details.dart';
@@ -94,7 +95,11 @@ class UserListWidget extends StatelessWidget {
             trailing: IconButton(
               icon: const Icon(Icons.arrow_forward),
               onPressed: () {
-                // Action à effectuer lors du clic sur le bouton
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Update(user: user),
+                    ));
               },
             ),
             onTap: () {

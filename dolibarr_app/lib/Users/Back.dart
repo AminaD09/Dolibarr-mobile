@@ -61,3 +61,19 @@ Future<String> delete(String id) async {
   //print(response.body.toString());
   return response.body.toString();
 }
+
+Future<int> updateUser(String id, Adduser user) async {
+  var token = await SessionManager().get("token");
+
+  final response = await http.Client().put(
+    Uri.parse("$api/$id"),
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+      'DOLAPIKEY': token
+    },
+    body: json.encode(user),
+  );
+  print(response.statusCode);
+
+  return response.statusCode;
+}

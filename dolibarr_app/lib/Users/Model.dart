@@ -68,7 +68,7 @@ class User {
     required this.specimen,
     required this.employee,
     required this.civilityCode,
-    required this.gender,
+    this.gender,
     required this.birth,
     required this.email,
     required this.personalEmail,
@@ -180,7 +180,7 @@ class User {
   int specimen;
   String employee;
   String civilityCode;
-  String gender;
+  String? gender;
   String birth;
   String email;
   String personalEmail;

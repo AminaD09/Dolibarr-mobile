@@ -192,8 +192,8 @@ class _CreateUserFormState extends State<CreateUserForm> {
                         ),
                         obscureText: true,
                         validator: (value) {
-                          if (value!.isEmpty) {
-                            return 'Veuillez saisir un mot de passe';
+                          if (value!.isEmpty || value.length < 12) {
+                            return 'Veuillez un mot de passe à 12 caractères ou plus';
                           }
                           return null;
                         },
