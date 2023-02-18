@@ -1,4 +1,7 @@
+import 'package:dolibarr_app/Users/homeList.dart';
+import 'package:dolibarr_app/dashboard/dashboard.dart';
 import 'package:dolibarr_app/main.dart';
+import 'package:dolibarr_app/produit/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:ternav_icons/ternav_icons.dart';
 import "package:flutter_session_manager/flutter_session_manager.dart";
@@ -27,17 +30,31 @@ class SideMenu extends StatelessWidget {
           DrawerListTile(
             icon: TernavIcons.lightOutline.home_2,
             title: "Home",
-            onTap: () {},
+            onTap: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => const MainScreen()),
+              );
+            },
           ),
           DrawerListTile(
-            icon: TernavIcons.lightOutline.menu,
-            title: "Modules",
-            onTap: () {},
-          ),
+              icon: TernavIcons.lightOutline.profile,
+              title: "Utilisateurs",
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const HomeUser()),
+                );
+              }),
           DrawerListTile(
             icon: TernavIcons.lightOutline.folder,
             title: "Product",
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const HomePage()),
+              );
+            },
           ),
           DrawerListTile(
             icon: TernavIcons.lightOutline.chat,
