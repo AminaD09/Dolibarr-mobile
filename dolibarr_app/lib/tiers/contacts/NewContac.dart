@@ -1,10 +1,7 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 
 import '../../constant.dart';
 import '../../dashboard/side_menu.dart';
-import '../../produit/product.dart';
 
 class NewContact extends StatefulWidget {
   const NewContact({Key? key}) : super(key: key);

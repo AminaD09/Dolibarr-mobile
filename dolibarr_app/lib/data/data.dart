@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ternav_icons/ternav_icons.dart';
 
@@ -10,7 +9,7 @@ import '../model/planing_model.dart';
 final List<Course> course = [
   Course(
     text: "Tiers & Contact",
-    lessons: "Stock",
+    lessons: "Nombre",
     imageUrl: "images/pic/tiers.png",
     percent: 75,
     backImage: "images/box/box1.png",
