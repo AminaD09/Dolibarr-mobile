@@ -16,13 +16,16 @@ class _HomePageState extends State<HomePage> {
   List<Product> products = List.empty(growable: true);
 
   int selectedIndex = -1;
+  
+  
+  
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: kOrange,
+        backgroundColor: Colors.purple,
         title: const Text('Product List'),
       ),
       endDrawer: const SideMenu(),
@@ -65,7 +68,7 @@ class _HomePageState extends State<HomePage> {
                         setState(() {
                           nameController.text = '';
                           productController.text = '';
-                          products.add(Product(name: name, product: product));
+                          products.add(Product(name: name, product: product, reference: product, price: 2));
                         });
                       }
                       //
