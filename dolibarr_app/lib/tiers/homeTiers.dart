@@ -1,5 +1,5 @@
 // ignore: file_names
-import 'package:dolibarr_app/tiers/contacts/HomeContact.dart';
+import 'package:dolibarr_app/contacts/HContact.dart';
 import 'package:dolibarr_app/tiers/gestion/gestionTiers.dart';
 import 'package:flutter/material.dart';
 
@@ -86,7 +86,7 @@ class HomeTiers extends StatelessWidget {
         return const GestionTiers();
       // Ajouter des cas pour d'autres pages en fonction des besoins
       default:
-        return const HomeContact();
+        return const Home();
     }
   }
 }

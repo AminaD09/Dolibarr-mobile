@@ -1,7 +1,10 @@
-import 'package:flutter/material.dart';
+import 'dart:io';
 
-import '../../constant.dart';
-import '../../dashboard/side_menu.dart';
+import 'package:flutter/material.dart';
+import '../constant.dart';
+import '../dashboard/side_menu.dart';
+import '../produit/product.dart';
+import 'HContact.dart';
 
 class NewContact extends StatefulWidget {
   const NewContact({Key? key}) : super(key: key);
@@ -21,9 +24,13 @@ class _NewContactState extends State<NewContact> {
   TextEditingController PhoneNumber = TextEditingController();
   // ignore: non_constant_identifier_names
   TextEditingController eMail = TextEditingController();
-
-  get products => null;
-  int selectedIndex = -1;
+  /*bool areAllFieldsFilled() {
+    return FirstName.text.isNotEmpty &&
+        SecondName.text.isNotEmpty &&
+        Adress.text.isNotEmpty &&
+        PhoneNumber.text.isNotEmpty &&
+        eMail.text.isNotEmpty;
+  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -96,6 +103,32 @@ class _NewContactState extends State<NewContact> {
                       borderRadius: BorderRadius.all(
                     Radius.circular(10),
                   ))),
+            ),
+            const SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                ElevatedButton(
+                  onPressed: /* areAllFieldsFilled()
+                      ? */
+                      () {
+                    //do something
+                  }
+                  //: null
+                  ,
+                  child: const Text('Valider'),
+                ),
+                ElevatedButton(
+                  onPressed: /*areAllFieldsFilled()
+                      ?*/
+                      () {
+                    //Navigator.pushReplacementNamed(
+                    // context, const HomeContact() as String);
+                  },
+                  //: null,
+                  child: const Text('Annuler'),
+                ),
+              ],
             )
           ],
         ),
